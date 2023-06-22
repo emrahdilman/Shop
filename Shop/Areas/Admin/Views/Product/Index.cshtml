@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<ProductVM>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Ürün Listesi</h4>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Adı</th>
+                                <th>Açıklama</th>
+                                <th>Resim</th>
+                                <th>Birim Fiyatı</th>
+                                <th>Kategori</th>
+                                <th>Durum</th>
+                                <th>Eklenme Zamani</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ProductVM product in Model)
+                            {
+                                <tr>
+                                    <td>@product.Id</td>
+                                    <td>@product.Name</td>
+                                    <td>@product.Description</td>
+                                    <td>
+                                        <img src="/media/products/@product.Image" width="100" />
+                                    </td>
+                                    <td>@product.UnitPrice</td>
+                                    <td>@product.CategoryName</td>
+                                    <td>@product.Status</td>
+                                    <td>@product.CreatedDate</td>
+                                    <td>
+                                        <a asp-action="UpdateProduct" asp-route-id="@product.Id" class="btn btn-outline-warning btn-sm">Düzenle</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Sil
+                                        </button>
+                                    </td>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content bg-light">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">UYARI</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Silmek istediğinize emin misiniz?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                                    <a asp-action="DeleteProduct" asp-route-id="@product.Id" class="btn btn-primary">Sil</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="CreateProduct" class="btn btn-outline-info btn-lg d-block">Yeni Ürün Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Rol Listesi</h4>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Rol Adı</th>
+                                <th>Kullanıcılar</th>
+                                <th>Kullanıcı Ata</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td user-role="@item.Id">@item.Id</td>
+                                    <td>
+                                        <a asp-action="AssignedUser" asp-route-id="@item.Id" class="btn btn-outline-success btn-sm">Kullanıcı Ata</a>
+                                    </td>
+                                    <td>
+                                        <a asp-action="RemoveRole" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Sil</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="CreateRole" class="btn btn-outline-dark d-block">Yeni Rol Ekle</a>
+            </div>
+        </div>
+    </div>

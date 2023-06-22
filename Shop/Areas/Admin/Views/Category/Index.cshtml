@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<Category>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Kategori Listesi</h4>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Adı</th>
+                                <th>Durumu</th>
+                                <th>Eklenme Zamani</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Category category in Model)
+                            {
+                                <tr>
+                                    <td>@category.Id</td>
+                                    <td>@category.Name</td>
+                                    <td>@category.Status</td>
+                                    <td>@category.CreatedDate</td>
+                                    <td>
+                                        <a asp-action="UpdateCategory" asp-route-id="@category.Id" class="btn btn-outline-warning btn-sm">Düzenle</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Sil
+                                        </button>
+                                    </td>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content bg-light">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">UYARI</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Silmek istediğinize emin misiniz?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                                    <a asp-action="DeleteCategory" asp-route-id="@category.Id" class="btn btn-primary">Sil</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="CreateCategory" class="btn btn-outline-info btn-lg d-block">Yeni Kategori Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+

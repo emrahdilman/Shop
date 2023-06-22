@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<ProductVM>
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Fiu</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    
+   </head>
+   <body>
+      
+      <!-- banner section start -->
+      <div class="banner_section layout_padding">
+         <div id="main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                 
+               </div>
+               @foreach (var product in Model)
+                {
+                     <div class="carousel-item">
+                          
+                        <div class="container">
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="banner_taital">@product.Name</h1>
+                                    @if (User?.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <p class="banner_text">@product.Description</p>
+                                        <p class="banner_text">@product.CategoryName</p>
+                                        <p class="banner_text">@product.UnitPrice TL</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="banner_text">Ayrıntıları Görmek İçin Giriş Yapınız</p>
+                                    }
+
+                                
+                              </div>
+                              <div class="col-md-6">
+                                 <div><img  style="height:350px" src="~/media/products/@product.Image" ></div>
+                              </div>
+                                  
+                           </div>
+                        </div>
+                        
+                     </div>
+               }
+             
+            </div>
+            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+            <i style="font-style: initial;">→</i>
+            </a>
+            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+            <i style="font-style: initial;">←</i>
+            </a>
+         </div>
+      </div>
+      <!-- banner section end -->
+      <!--  design section start -->
+     
+
+           
+      
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript --> 
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   
+   </body>
+</html>
+
+
+@* <div class="container">
+                     <div class="row">
+                        <div class="col-md-6">
+                          @foreach (var product in Model)
+                                {
+                                    <h1 class="banner_taital">@product.Name</h1>
+                                    <p class="banner_text">@product.Description</p>
+                                    <p class="banner_text">@product.CategoryName</p>
+                                    <p class="banner_text">@product.UnitPrice TL</p>
+                                    <div class="btn_main">
+                                        @if (User?.Identity?.IsAuthenticated ?? false)
+                                        {
+                                            <div class="contact_bt"><a asp-action="Details" asp-route-id="@product.Id">Ayrıntılar</a></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="contact_bt"><a asp-controller="Account" asp-action="LogIn" >Ayrıntılar</a></div>
+                                        }
+
+                                    </div>
+
+                                }
+                        </div>
+                        <div class="col-md-6">
+
+
+                                    <div ><img src="~/media/products/@product.Image" style="height:300px"></div>
+
+
+
+                        </div>
+                     </div>
+                  </div>*@

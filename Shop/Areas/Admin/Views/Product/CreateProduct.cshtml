@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+@model CreateProductDTO
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Ürün Ekle</h5>
+            </div>
+            <form asp-action="CreateProduct" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div>
+                        <label asp-for="Name" class="form-label">Ürün Adı</label>
+                        <input asp-for="Name" placeholder="Ürün adı giriniz.." class="form-control" />
+                        <span asp-validation-for="Name" class="form-text text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Description" class="form-label">İçerik</label>
+                        <input asp-for="Description" placeholder="Ürün içeriği giriniz.." class="form-control" />
+                        <span asp-validation-for="Description" class="form-text text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="UnitPrice" class="form-label">Ürün Fiyatı</label>
+                        <input asp-for="UnitPrice" placeholder="Ürün fiyatı giriniz.." class="form-control" />
+                        <span asp-validation-for="UnitPrice" class="form-text text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="CategoryId" class="form-label">Ürün Kategorisi</label>
+                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
+                            <option value="0">Bir kategori seçiniz</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="form-text text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="UploadImage" class="form-label">Ürün Resmi</label>
+                        <input asp-for="UploadImage" class="form-control" />
+                        <span asp-validation-for="UploadImage" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer" style="height:50px;">
+                    <div>
+                        <input type="submit" value="Ürün Ekle" class="btn btn-outline-success btn-sm float-end" />
+                        <a asp-action="Index" class="btn btn-outline-info btn-sm float-start">Geri Dön</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

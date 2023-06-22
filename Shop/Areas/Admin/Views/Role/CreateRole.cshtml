@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "CreateRole";
+}
+@model RoleDTO
+
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Role Ekle</h4>
+            </div>
+            <form asp-action="CreateRole">
+                <div class="card-body">
+                    <div>
+                        <label class="form-label">Role Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Rol ismi giriniz...." />
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <input type="submit" value="Rol Ekle" class="btn btn-outline-success btn-sm float-end" />
+                        <a asp-action="Index" class="btn btn-outline-info btn-sm float-start">Geri Dön</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
